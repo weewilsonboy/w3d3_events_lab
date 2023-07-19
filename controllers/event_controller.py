@@ -1,4 +1,4 @@
-from flask import render_template, Blueprint, request
+from flask import render_template, Blueprint, request, redirect
 from models.event_list import events, add_new_event
 from models.event import Event
 
@@ -32,8 +32,7 @@ def remove_event():
 @events_blueprint.route('/events/deleteindex', methods= ['POST'])
 def remove_index():
     events.pop(int(request.form["index"]))
-    return render_template('index.jinja', title= "Event List", events=events)
-
+    return redirect('/events')
 
 
 
